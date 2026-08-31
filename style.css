@@ -1,0 +1,495 @@
+/* Обычный сброс отступов — то, что у тебя уже есть в проекте */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  padding: 40px;
+}
+
+/* ===== Стили самой модалки ===== */
+
+.settings-modal,
+dialog {
+  /* Тот же принцип, что и раньше: фиксированный размер с запасом под контент */
+  width: 950px;
+  max-width: 90vw;
+  /* На небольших экранах не вылезет за границы */
+  height: 580px;
+  max-height: 85vh;
+
+  border: none;
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 0;
+  /* ВАЖНО: убираем padding у самого dialog, чтобы колонки упирались в края */
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  overflow: hidden;
+  /* чтобы скругления углов не "срезались" внутренним контентом */
+}
+
+/* ВАЖНО: display: flex задаём ТОЛЬКО когда у dialog есть атрибут [open]
+   (его браузер сам добавляет при showModal()).
+   Если написать просто "dialog { display: flex }" без [open] —
+   это перебьёт встроенное правило браузера "display: none" для закрытых диалогов,
+   и модалка будет видна на странице ВСЕГДА, даже без клика по кнопке. */
+.settings-modal[open],
+dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Затемнённый фон позади модалки — браузер создаёт его сам */
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* ===== Шапка ===== */
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  padding: 20px 24px;
+  flex-shrink: 0;
+  /* шапка никогда не сжимается */
+}
+
+.modal-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-title i {
+  font-size: 22px;
+  color: #111;
+}
+
+.modal-title h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+}
+
+.modal-header::after {
+  content: "";
+  display: block;
+
+  width: 100%;
+  height: 1px;
+  background-color: #eee;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+#closeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+#closeBtn i {
+  font-size: 20px;
+  color: #555;
+}
+
+#closeBtn:hover {
+  background: #f2f2f2;
+}
+
+/* ===== Основная часть: две колонки ===== */
+
+.modal-content {
+  display: flex;
+  flex: 1;
+  /* занимает всё оставшееся место под шапкой */
+  overflow: hidden;
+  /* каждая колонка скроллится независимо, если понадобится */
+}
+
+/* ---- Левая колонка (навигация) ---- */
+
+.modal-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 16px;
+  border-right: 1px solid #eee;
+}
+
+.settings-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.settings-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 12px;
+  border-radius: 10px;
+
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+
+  transition: background-color 0.15s ease;
+}
+
+.settings-nav-link i {
+  font-size: 18px;
+  color: #555;
+}
+
+.settings-nav-link:hover {
+  background: #f5f5f5;
+}
+
+.settings-nav-link.active {
+  background: #f0f0f0;
+  font-weight: 700;
+  color: #111;
+}
+
+.settings-nav-link.active i {
+  color: #111;
+}
+
+/* Карточка с версией приложения внизу боковой колонки */
+.app-info-card {
+  padding: 12px;
+}
+
+.app-info-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+}
+
+.app-info-version,
+.app-info-copyright {
+  font-size: 13px;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* ---- Правая колонка (контент) ---- */
+
+.modal-main {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-main-scroll {
+  flex: 1;
+  overflow-y: auto;
+  /* контент скроллится, если не помещается */
+  padding: 24px 28px;
+}
+
+/* Все панели скрыты по умолчанию, кроме активной */
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.section-heading {
+  margin-bottom: 16px;
+}
+
+.section-heading h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+}
+
+.section-heading p {
+  font-size: 14px;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* Одна строка настройки */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 16px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+
+  margin-bottom: 12px;
+}
+
+.setting-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+}
+
+.setting-desc {
+  font-size: 13px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.setting-control {
+  padding: 8px 12px;
+  padding-right: 32px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  min-width: 160px;
+  cursor: pointer;
+
+  outline: none;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center; /* ← вот эту цифру (12px) и меняй */
+  background-size: 16px;
+}
+
+.setting-control-small {
+  min-width: 90px;
+}
+
+/* ===== Appearance tab ===== */
+
+.group-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.group-label:first-of-type {
+  margin-top: 0;
+}
+
+.theme-options {
+  display: flex;
+  gap: 12px;
+}
+
+.theme-card {
+  flex: 1;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  cursor: pointer;
+  display: block;
+  transition: border-color 0.15s ease;
+}
+
+.theme-card input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.theme-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.theme-card-top i {
+  font-size: 20px;
+  color: #333;
+}
+
+.radio-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid #ccc;
+  display: inline-block;
+  position: relative;
+}
+
+.theme-card.selected {
+  border-color: #111;
+}
+
+.theme-card.selected .radio-dot {
+  border-color: #111;
+}
+
+.theme-card.selected .radio-dot::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #111;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.theme-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+}
+
+.theme-card-desc {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.color-options {
+  display: flex;
+  gap: 10px;
+}
+
+.color-swatch {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.color-swatch.selected::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 2px solid #111;
+  border-radius: 50%;
+}
+
+.setting-control-full {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Переключатель (toggle switch) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-track {
+  position: absolute;
+  inset: 0;
+  background-color: #ddd;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.switch-track::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.switch input:checked+.switch-track {
+  background-color: #111;
+}
+
+.switch input:checked+.switch-track::before {
+  transform: translateX(20px);
+}
+
+/* ===== Футер ===== */
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  padding: 16px 28px;
+  border-top: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background: #f5f5f5;
+}
+
+.btn-primary {
+  background: #111;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #000;
+}
