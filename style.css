@@ -493,3 +493,21 @@ dialog::backdrop {
 .btn-primary:hover {
   background: #000;
 }
+
+/* Красная кнопка для опасных действий (удаление и т.д.) */
+.btn-danger {
+  background: #fff;
+  border: 1px solid #EF4444;
+  color: #EF4444;
+}
+
+.btn-danger:hover {
+  background: #EF4444;
+  color: #fff;
+}
+
+/* Лёгкая красная подсветка для строки с опасным действием */
+.danger-row {
+  border-color: #FCA5A5;
+  background: #FEF2F2;
+}

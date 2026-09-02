@@ -179,33 +179,72 @@
             </select>
 
             <!-- Переключатели -->
-             
-          <!-- сюда добавишь свой контент -->
+
+            <!-- сюда добавишь свой контент -->
+          </div>
+
+          <div class="tab-panel" id="privacy">
+            <div class="section-heading">
+              <h3>Privacy</h3>
+              <p>Manage your data and privacy settings</p>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-text">
+                <p class="setting-title">Save conversion history</p>
+                <p class="setting-desc">Keep a local record of your past conversions</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="switch-track"></span>
+              </label>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-text">
+                <p class="setting-title">Share anonymous usage data</p>
+                <p class="setting-desc">Help improve Convertoz by sharing anonymous analytics</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox">
+                <span class="switch-track"></span>
+              </label>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-text">
+                <p class="setting-title">Clear conversion history</p>
+                <p class="setting-desc">Permanently delete all saved conversions</p>
+              </div>
+              <button class="btn btn-secondary">Clear history</button>
+            </div>
+
+            <div class="setting-row danger-row">
+              <div class="setting-text">
+                <p class="setting-title">Delete account</p>
+                <p class="setting-desc">This action is permanent and cannot be undone</p>
+              </div>
+              <button class="btn btn-danger">Delete account</button>
+            </div>
+
+          </div>
+
+          <div class="tab-panel" id="about">
+            <div class="section-heading">
+              <h3>About</h3>
+              <p>Information about the app</p>
+            </div>
+          </div>
+
         </div>
 
-        <div class="tab-panel" id="privacy">
-          <div class="section-heading">
-            <h3>Privacy</h3>
-            <p>Manage your data and privacy settings</p>
-          </div>
-        </div>
-
-        <div class="tab-panel" id="about">
-          <div class="section-heading">
-            <h3>About</h3>
-            <p>Information about the app</p>
-          </div>
+        <!-- Футер с кнопками, прижат к низу правой колонки -->
+        <div class="modal-footer">
+          <button class="btn btn-secondary">Cancel</button>
+          <button class="btn btn-primary">Save changes</button>
         </div>
 
       </div>
-
-      <!-- Футер с кнопками, прижат к низу правой колонки -->
-      <div class="modal-footer">
-        <button class="btn btn-secondary">Cancel</button>
-        <button class="btn btn-primary">Save changes</button>
-      </div>
-
-    </div>
 
     </div>
   </dialog>
