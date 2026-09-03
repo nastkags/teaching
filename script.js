@@ -86,16 +86,33 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ===== Цветовые кружки акцента =====
-  const colorSwatches = document.querySelectorAll('.color-swatch');
+ // ===== Выбор Accent color =====
 
-  colorSwatches.forEach(swatch => {
-    swatch.addEventListener('click', () => {
-      colorSwatches.forEach(s => s.classList.remove('selected'));
-      swatch.classList.add('selected');
+const colorSwatches = document.querySelectorAll('.color-swatch');
+
+colorSwatches.forEach(swatch => {
+
+  swatch.addEventListener('click', () => {
+
+    // Убираем selected со всех цветов
+    colorSwatches.forEach(s => {
+      s.classList.remove('selected');
     });
+
+    // Выбираем нажатый цвет
+    swatch.classList.add('selected');
+
+    // Получаем название цвета
+    const accent = swatch.getAttribute('data-accent');
+
+    // Меняем data-accent у <html>
+    document.documentElement.setAttribute('data-accent', accent);
   });
 
 });
+
+});
+
 
 // ===== Emoji skin tone (в стиле GitHub) =====
 const emojiToneItems = document.querySelectorAll('.emoji-tone-item');
