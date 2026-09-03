@@ -24,13 +24,15 @@
   --modal-heading: #FFFFFF;
   --modal-text: #E2E8F0;
   --modal-text-muted: #94A3B8;
-  --modal-border: #2D3748; /* Границы блоками стали хорошо видны */
+  --modal-border: #2D3748;
+  /* Границы блоками стали хорошо видны */
   --modal-border-strong: #4A5568;
   --modal-surface: #11151D;
   --modal-surface-hover: #1A202C;
   --modal-surface-selected: #2D3748;
 
-  --emoji-radio: #64748B; /* Неактивные радио-кнопки теперь отчетливо видны */
+  --emoji-radio: #64748B;
+  /* Неактивные радио-кнопки теперь отчетливо видны */
   --danger-color: #F87171;
   --danger-bg: rgba(239, 68, 68, 0.15);
   --danger-border: rgba(239, 68, 68, 0.4);
@@ -48,8 +50,10 @@ html[data-accent="blue"] {
   --emoji-tone-item: #2563EB;
   --accent-bg: rgba(37, 99, 235, 0.12);
 }
+
 html.dark[data-accent="blue"] {
-  --accent-color: #38BDF8; /* Неоново-голубой */
+  --accent-color: #38BDF8;
+  /* Неоново-голубой */
   --btn-primary: #0284C7;
   --emoji-tone-item: #38BDF8;
   --accent-bg: rgba(56, 189, 248, 0.22);
@@ -62,8 +66,10 @@ html[data-accent="purple"] {
   --emoji-tone-item: #7C3AED;
   --accent-bg: rgba(124, 58, 237, 0.12);
 }
+
 html.dark[data-accent="purple"] {
-  --accent-color: #C084FC; /* Сочный фиолетовый */
+  --accent-color: #C084FC;
+  /* Сочный фиолетовый */
   --btn-primary: #A855F7;
   --emoji-tone-item: #C084FC;
   --accent-bg: rgba(192, 132, 252, 0.22);
@@ -76,8 +82,10 @@ html[data-accent="green"] {
   --emoji-tone-item: #059669;
   --accent-bg: rgba(5, 150, 105, 0.12);
 }
+
 html.dark[data-accent="green"] {
-  --accent-color: #34D399; /* Яркий изумруд/мята */
+  --accent-color: #34D399;
+  /* Яркий изумруд/мята */
   --btn-primary: #10B981;
   --emoji-tone-item: #34D399;
   --accent-bg: rgba(52, 211, 153, 0.22);
@@ -90,8 +98,10 @@ html[data-accent="orange"] {
   --emoji-tone-item: #D97706;
   --accent-bg: rgba(217, 119, 6, 0.12);
 }
+
 html.dark[data-accent="orange"] {
-  --accent-color: #FBBF24; /* Сочный янтарный */
+  --accent-color: #FBBF24;
+  /* Сочный янтарный */
   --btn-primary: #F59E0B;
   --emoji-tone-item: #FBBF24;
   --accent-bg: rgba(251, 191, 36, 0.22);
@@ -104,8 +114,10 @@ html[data-accent="pink"] {
   --emoji-tone-item: #DB2777;
   --accent-bg: rgba(219, 39, 119, 0.12);
 }
+
 html.dark[data-accent="pink"] {
-  --accent-color: #F472B6; /* Яркий розовый */
+  --accent-color: #F472B6;
+  /* Яркий розовый */
   --btn-primary: #EC4899;
   --emoji-tone-item: #F472B6;
   --accent-bg: rgba(244, 114, 182, 0.22);
@@ -118,8 +130,10 @@ html[data-accent="gray"] {
   --emoji-tone-item: #475569;
   --accent-bg: rgba(71, 85, 105, 0.12);
 }
+
 html.dark[data-accent="gray"] {
-  --accent-color: #CBD5E1; /* Светло-серебристый */
+  --accent-color: #CBD5E1;
+  /* Светло-серебристый */
   --btn-primary: #94A3B8;
   --emoji-tone-item: #CBD5E1;
   --accent-bg: rgba(203, 213, 225, 0.22);
@@ -582,7 +596,7 @@ dialog::backdrop {
 
 .switch input:checked+.switch-track {
   background-color: var(--accent-color);
-  
+
 }
 
 .switch input:checked+.switch-track::before {
@@ -650,26 +664,29 @@ dialog::backdrop {
 .justify-content {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Выравнивает текст по вертикали */
+  align-items: center;
+  /* Выравнивает текст по вертикали */
 }
 
 /* Сбрасываем стандартные отступы у параграфов внутри */
 .justify-content p {
-  margin: 0; 
+  margin: 0;
 }
 
 .version-wrapper {
   display: flex;
   align-items: center;
-  gap: 12px; /* Увеличьте значение (8px, 12px, 16px), чтобы сдвинуть номер левее */
-  
+  gap: 12px;
+  /* Увеличьте значение (8px, 12px, 16px), чтобы сдвинуть номер левее */
+
   /* Задайте нужный цвет серого (или возьмите тот, что у .setting-desc) */
   color: var(--modal-text-muted);
 }
 
 /* Применяем цвет обертки к SVG */
 .version-wrapper svg {
-  stroke: currentColor; /* Иконка автоматически подтянет цвет (color) из родителя */
+  stroke: currentColor;
+  /* Иконка автоматически подтянет цвет (color) из родителя */
 }
 
 .about-version {
@@ -740,6 +757,7 @@ dialog::backdrop {
 
 /* ===== Custom select (замена нативного <select>) ===== */
 
+
 .custom-select {
   position: relative;
 }
@@ -766,10 +784,8 @@ dialog::backdrop {
 
 .custom-select-trigger i {
   font-size: 16px;
-  color: var(--modal-text-muted);
-  transition: transform 0.15s ease;
-
   color: var(--modal-text);
+  transition: transform 0.15s ease;
 }
 
 .custom-select.open .custom-select-trigger i {
@@ -786,14 +802,18 @@ dialog::backdrop {
   overflow-y: auto;
 
   background: var(--modal-surface);
-  border: 1px solid var(--modal-border);
+  border: 1px solid var(--modal-border-strong);
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 
   padding: 6px;
 
   display: none;
   z-index: 10;
+}
+
+.dark .custom-select-options {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
 }
 
 .custom-select.open .custom-select-options {
@@ -814,6 +834,8 @@ dialog::backdrop {
   border-radius: 8px;
 
   font-size: 14px;
+  color: var(--modal-text);
+  /* Явное задание цвета текста */
   cursor: pointer;
 }
 
@@ -829,10 +851,12 @@ dialog::backdrop {
 
 .custom-select-option:hover {
   background: var(--modal-surface-hover);
+  color: var(--modal-heading);
 }
 
 .custom-select-option.selected {
   background: var(--modal-surface-selected);
+  color: var(--modal-heading);
   font-weight: 600;
 }
 
