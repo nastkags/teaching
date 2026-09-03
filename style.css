@@ -51,12 +51,12 @@ html[data-accent="blue"] {
   --accent-bg: rgba(37, 99, 235, 0.12);
 }
 
+/* Исходный синий (из самого первого варианта) */
 html.dark[data-accent="blue"] {
-  --accent-color: #38BDF8;
-  /* Неоново-голубой */
-  --btn-primary: #0284C7;
-  --emoji-tone-item: #38BDF8;
-  --accent-bg: rgba(56, 189, 248, 0.22);
+  --accent-color: #0066FF;
+  --btn-primary: #005DE8;
+  --emoji-tone-item: #3B82F6;
+  --accent-bg: rgba(0, 102, 255, 0.15);
 }
 
 /* 2. ФИОЛЕТОВЫЙ (PURPLE) */
