@@ -78,17 +78,32 @@
               <p>Basic preferences and default settings</p>
             </div>
 
-            <!-- Одна строка настройки -->
             <div class="setting-row">
               <div class="setting-text">
                 <p class="setting-title">Base currency</p>
                 <p class="setting-desc">Select your default currency</p>
               </div>
-              <select class="setting-control">
-                <option>USD — US Dollar</option>
-                <option>EUR — Euro</option>
-                <option>GBP — British Pound</option>
-              </select>
+              <div class="custom-select">
+                <button class="custom-select-trigger" type="button">
+                  <span class="custom-select-value">USD — US Dollar</span>
+                  <i class="ti ti-chevron-down"></i>
+                </button>
+
+                <div class="custom-select-options">
+                  <div class="custom-select-option selected" data-value="USD — US Dollar">
+                    USD — US Dollar
+                    <i class="ti ti-check"></i>
+                  </div>
+                  <div class="custom-select-option" data-value="EUR — Euro">
+                    EUR — Euro
+                    <i class="ti ti-check"></i>
+                  </div>
+                  <div class="custom-select-option" data-value="GBP — British Pound">
+                    GBP — British Pound
+                    <i class="ti ti-check"></i>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="setting-row">
@@ -96,11 +111,27 @@
                 <p class="setting-title">Thousands separator</p>
                 <p class="setting-desc">Choose how to display large numbers</p>
               </div>
-              <select class="setting-control setting-control-small">
-                <option>1,234.56</option>
-                <option>1.234,56</option>
-                <option>1 234.56</option>
-              </select>
+              <div class="custom-select custom-select-small">
+                <button class="custom-select-trigger" type="button">
+                  <span class="custom-select-value">1,234.56</span>
+                  <i class="ti ti-chevron-down"></i>
+                </button>
+
+                <div class="custom-select-options">
+                  <div class="custom-select-option selected" data-value="1,234.56">
+                    1,234.56
+                    <i class="ti ti-check"></i>
+                  </div>
+                  <div class="custom-select-option" data-value="1.234,56">
+                    1.234,56
+                    <i class="ti ti-check"></i>
+                  </div>
+                  <div class="custom-select-option" data-value="1 234.56">
+                    1 234.56
+                    <i class="ti ti-check"></i>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="setting-row">
@@ -169,7 +200,7 @@
               <button class="color-swatch" style="background:#9CA3AF"></button>
             </div>
 
-            <!-- Шрифт -->
+            <!-- ЗАМЕТКА: выбор шрифта временно закомментирован, вернуться позже
             <p class="group-label">Font</p>
             <select class="setting-control setting-control-full">
               <option>Inter (Default)</option>
@@ -177,8 +208,48 @@
               <option>Poppins</option>
               <option>Lato</option>
             </select>
+            -->
 
-            <!-- Переключатели -->
+            <!-- Emoji skin tone (шутки ради, как у GitHub) -->
+            <p class="group-label">Emoji skin tone preference</p>
+            <p class="group-sublabel">Preferred default emoji skin tone</p>
+            <div class="emoji-tone-row">
+              <label class="emoji-tone-item selected">
+                <input type="radio" name="emoji-tone" value="neutral" checked>
+                <span class="emoji-radio"></span>
+                <span class="emoji-tone-icon">👋</span>
+              </label>
+
+              <label class="emoji-tone-item">
+                <input type="radio" name="emoji-tone" value="light">
+                <span class="emoji-radio"></span>
+                <span class="emoji-tone-icon">👋🏻</span>
+              </label>
+
+              <label class="emoji-tone-item">
+                <input type="radio" name="emoji-tone" value="medium-light">
+                <span class="emoji-radio"></span>
+                <span class="emoji-tone-icon">👋🏼</span>
+              </label>
+
+              <label class="emoji-tone-item">
+                <input type="radio" name="emoji-tone" value="medium">
+                <span class="emoji-radio"></span>
+                <span class="emoji-tone-icon">👋🏽</span>
+              </label>
+
+              <label class="emoji-tone-item">
+                <input type="radio" name="emoji-tone" value="medium-dark">
+                <span class="emoji-radio"></span>
+                <span class="emoji-tone-icon">👋🏾</span>
+              </label>
+
+              <label class="emoji-tone-item">
+                <input type="radio" name="emoji-tone" value="dark">
+                <span class="emoji-radio"></span>
+                <span class="emoji-tone-icon">👋🏿</span>
+              </label>
+            </div>
 
             <!-- сюда добавишь свой контент -->
           </div>
@@ -249,7 +320,7 @@
                   <path
                     d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
 
-                    
+
                 </svg>
               </div>
             </div>

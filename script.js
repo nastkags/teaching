@@ -56,9 +56,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   themeCards.forEach(card => {
     card.addEventListener('click', () => {
-      // Снимаем "selected" со всех карточек, ставим только на нажатую
+
+      // Убираем selected со всех карточек
       themeCards.forEach(c => c.classList.remove('selected'));
+
+      // Выбираем нажатую карточку
       card.classList.add('selected');
+
+      // Получаем выбранную тему
+      const theme = card.querySelector('input').value;
+
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+
+      } else if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+
+      } else if (theme === 'system') {
+        // Пока просто определяем тему системы
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (prefersDark) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
     });
   });
 
@@ -72,4 +95,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+});
+
+// ===== Emoji skin tone (в стиле GitHub) =====
+const emojiToneItems = document.querySelectorAll('.emoji-tone-item');
+
+emojiToneItems.forEach(item => {
+  item.addEventListener('click', () => {
+    emojiToneItems.forEach(i => i.classList.remove('selected'));
+    item.classList.add('selected');
+  });
+});
+
+// ===== Кастомные dropdown-списки (замена нативного <select>) =====
+const customSelects = document.querySelectorAll('.custom-select');
+
+customSelects.forEach(select => {
+  const trigger = select.querySelector('.custom-select-trigger');
+  const valueLabel = select.querySelector('.custom-select-value');
+  const options = select.querySelectorAll('.custom-select-option');
+
+  trigger.addEventListener('click', () => {
+    const isOpening = !select.classList.contains('open');
+
+    select.classList.toggle('open');
+
+    if (isOpening) {
+      const triggerRect = trigger.getBoundingClientRect();
+      const optionsHeight = select.querySelector('.custom-select-options').offsetHeight;
+      const spaceBelow = window.innerHeight - triggerRect.bottom;
+
+      if (spaceBelow < optionsHeight) {
+        select.classList.add('open-up');
+      } else {
+        select.classList.remove('open-up');
+      }
+    }
+  });
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      options.forEach(o => o.classList.remove('selected'));
+      option.classList.add('selected');
+      valueLabel.textContent = option.getAttribute('data-value');
+      select.classList.remove('open');
+    });
+  });
+});
+
+// Клик где угодно вне dropdown — закрывает все открытые списки
+document.addEventListener('click', (event) => {
+  customSelects.forEach(select => {
+    if (!select.contains(event.target)) {
+      select.classList.remove('open');
+    }
+  });
 });
