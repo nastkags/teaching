@@ -487,12 +487,12 @@ dialog::backdrop {
 }
 
 .btn-primary {
-  background: #111;
+  background: #0066FF;
   color: #fff;
 }
 
 .btn-primary:hover {
-  background: #000;
+  background: #005AE0;
 }
 
 /* Красная кнопка для опасных действий (удаление и т.д.) */
